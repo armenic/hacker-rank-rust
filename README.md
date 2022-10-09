@@ -1,0 +1,1 @@
+Solving https://www.hackerrank.com/ problems using Rust.
