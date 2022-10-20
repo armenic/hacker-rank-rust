@@ -17,15 +17,23 @@ fn icecreamParlor(m: i32, arr: &[i32]) -> Vec<i32> {
 
     let mut final_ = Vec::new();
     for (i, v) in arr.iter().enumerate() {
-        if v < &m {
-            let r = m - v;
-            for (ii, vv) in arr.iter().enumerate() {
-                // println!("{} {} {}", v, r, vv);
-                if vv == &r && ii != i {
-                    final_.push(i as i32 + 1);
-                    final_.push(ii as i32 + 1);
-                    return final_;
-                }
+        let r = m - v;
+        final_ = find_rest(arr, final_, i, r);
+        if final_.len() == 2 {
+            return final_;
+        }
+    }
+    return final_;
+}
+
+fn find_rest(arr: &[i32], mut final_: Vec<i32>, i: usize, r: i32) -> Vec<i32> {
+    if r > 0 {
+        for (ii, vv) in arr.iter().enumerate() {
+            // println!("{} {} {}", v, r, vv);
+            if vv == &r && ii != i {
+                final_.push(i as i32 + 1);
+                final_.push(ii as i32 + 1);
+                return final_;
             }
         }
     }
